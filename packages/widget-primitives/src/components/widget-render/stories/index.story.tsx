@@ -11,13 +11,10 @@ import {
 	useState,
 } from '@wordpress/element';
 import { globe, starFilled } from '@wordpress/icons';
-// `IconButton` is not on the recommended list yet.
 import {
-	// eslint-disable-next-line @wordpress/use-recommended-components
 	Button,
 	Card,
 	Icon,
-	// eslint-disable-next-line @wordpress/use-recommended-components
 	IconButton,
 	Link,
 	Stack,
