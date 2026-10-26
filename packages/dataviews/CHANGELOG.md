@@ -12,6 +12,10 @@
 -   Use the design system outline for keyboard focus on list items ([#85358](https://github.com/WordPress/gutenberg/pull/85358)).
 -   Simplify filter selection indicators and remove their hover colors ([#85191](https://github.com/WordPress/gutenberg/pull/85191)).
 
+### Bug Fixes
+
+-   Pagination: Format the page numbers with the separators of the user's locale ([#85594](https://github.com/WordPress/gutenberg/pull/85594)).
+
 ## 21.0.0 (2026-10-20)
 
 ### Breaking Changes
