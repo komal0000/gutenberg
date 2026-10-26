@@ -7,6 +7,7 @@ import { next, previous } from '@wordpress/icons';
 import { Select, Stack } from '@wordpress/ui';
 import DataViewsContext from '../dataviews-context';
 import type { View } from '../../types';
+import formatNumber from '../../utils/format-number';
 
 export function hasPaginationControls(
 	view: View,
@@ -39,9 +40,9 @@ export function DataViewsPageSelect( { className }: { className?: string } ) {
 					currentPage === page
 						? sprintf(
 								// translators: 1: current page number. 2: total number of pages.
-								__( 'Page %1$d of %2$d' ),
-								currentPage,
-								totalPages
+								__( 'Page %1$s of %2$s' ),
+								formatNumber( currentPage ),
+								formatNumber( totalPages )
 							)
 						: page.toString(),
 			};
@@ -59,9 +60,9 @@ export function DataViewsPageSelect( { className }: { className?: string } ) {
 			{ createInterpolateElement(
 				sprintf(
 					// translators: 1: Current page number, 2: Total number of pages.
-					_x( '<div>Page</div>%1$s<div>of %2$d</div>', 'paging' ),
+					_x( '<div>Page</div>%1$s<div>of %2$s</div>', 'paging' ),
 					'<CurrentPage />',
-					totalPages
+					formatNumber( totalPages )
 				),
 				{
 					div: <div aria-hidden />,
