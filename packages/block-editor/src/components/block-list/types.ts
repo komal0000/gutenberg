@@ -11,6 +11,7 @@ import type { Block, BlockType, RawBlock } from '@wordpress/blocks';
 import type { InitialPosition } from '../../store/types';
 import type { Layout } from '../../layouts/types';
 import type { BlockEditingMode } from '../block-editing-mode';
+import type { BlockVisibility } from '../block-visibility/use-block-visibility';
 
 /**
  * The private information a block list block passes to its edit component
@@ -203,6 +204,7 @@ export type BlockListBlockSelectedProps = Omit<
 	'clientId' | 'rootClientId' | 'ghostBlock' | 'wrapperProps'
 > & {
 	blockWithoutAttributes: Partial< Block >;
+	blockVisibility?: BlockVisibility;
 	name: string;
 	attributes: Record< string, unknown >;
 	isValid?: boolean;
