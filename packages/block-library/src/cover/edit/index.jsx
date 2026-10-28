@@ -58,7 +58,9 @@ import { DEFAULT_MEDIA_SIZE_SLUG } from '../constants';
 import { getBackgroundEmbedHtml } from '../embed-video-utils';
 import { unlock } from '../../lock-unlock';
 
-const { openMediaEditorModalKey } = unlock( blockEditorPrivateApis );
+const { openMediaEditorModalKey, getPendingMediaPreviewKey } = unlock(
+	blockEditorPrivateApis
+);
 
 function getInnerBlocksTemplate( attributes ) {
 	return [
@@ -131,6 +133,14 @@ function CoverEdit( {
 		( select ) =>
 			select( blockEditorStore ).getSettings()[ openMediaEditorModalKey ],
 		[]
+	);
+	// A crop from the media editor that is saved with the post.
+	const pendingPreviewUrl = useSelect(
+		( select ) =>
+			select( blockEditorStore )
+				.getSettings()
+				[ getPendingMediaPreviewKey ]?.( select, clientId ),
+		[ clientId ]
 	);
 
 	const { __unstableMarkNextChangeAsNotPersistent, replaceInnerBlocks } =
@@ -216,8 +226,9 @@ function CoverEdit( {
 	// to preview in edit the dynamic featured image
 	const url = useFeaturedImage
 		? mediaUrl
-		: // Ensure the url is not malformed due to sanitization through `wp_kses`.
-			originalUrl?.replaceAll( '&amp;', '&' );
+		: ( pendingPreviewUrl ??
+			// Ensure the url is not malformed due to sanitization through `wp_kses`.
+			originalUrl?.replaceAll( '&amp;', '&' ) );
 	const backgroundType = useFeaturedImage
 		? IMAGE_BACKGROUND_TYPE
 		: originalBackgroundType;
@@ -572,6 +583,7 @@ function CoverEdit( {
 		let isUndone = false;
 		openMediaEditorModal( {
 			id,
+			clientId,
 			onClose: () => {
 				editMediaButtonRef.current?.focus();
 			},
@@ -580,12 +592,19 @@ function CoverEdit( {
 				setIsSwappingMedia( false );
 				setAttributes( previousImage );
 			},
-			onUpdate: async ( { id: newId, url: newUrl } ) => {
+			onUpdate: async ( {
+				id: newId,
+				url: newUrl,
+				isPending,
+				previewUrl,
+			} ) => {
 				if ( typeof newId !== 'number' ) {
 					return;
 				}
 
-				if ( newId !== id && newUrl ) {
+				// With a pending crop the block shows the crop preview, so
+				// there's no new file to wait for.
+				if ( newId !== id && newUrl && ! isPending ) {
 					setIsSwappingMedia( true );
 				}
 
@@ -599,8 +618,9 @@ function CoverEdit( {
 				};
 
 				if ( newUrl ) {
-					const averageBackgroundColor =
-						await getMediaColor( newUrl );
+					const averageBackgroundColor = await getMediaColor(
+						previewUrl ?? newUrl
+					);
 					// Snackbar Undo can run while the image color is loading.
 					if ( isUndone ) {
 						return;
@@ -645,6 +665,7 @@ function CoverEdit( {
 		} );
 	}, [
 		id,
+		clientId,
 		openMediaEditorModal,
 		setAttributes,
 		setOverlayColor,
