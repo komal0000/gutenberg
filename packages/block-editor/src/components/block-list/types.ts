@@ -11,11 +11,6 @@ import type { Block, BlockType, RawBlock } from '@wordpress/blocks';
 import type { InitialPosition } from '../../store/types';
 import type { Layout } from '../../layouts/types';
 import type { BlockEditingMode } from '../block-editing-mode';
-import type {
-	BlockVisibility,
-	ViewportBreakpoints,
-} from '../block-visibility/use-block-visibility';
-import type { BlockVisibilityViewport } from '../block-visibility/constants';
 
 /**
  * The private information a block list block passes to its edit component
@@ -67,9 +62,6 @@ export interface PrivateBlockContextValue {
 	 * The attributes of the block that block bindings can connect.
 	 */
 	bindableAttributes?: string[];
-	blockVisibility?: BlockVisibility;
-	deviceType?: BlockVisibilityViewport;
-	viewportSettings?: ViewportBreakpoints;
 	supportsSplitting?: boolean;
 	wrapperProps?: BlockListWrapperProps;
 	isAligned?: boolean;
