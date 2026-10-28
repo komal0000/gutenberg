@@ -11,14 +11,7 @@ import {
 	useState,
 } from '@wordpress/element';
 import { globe, starFilled } from '@wordpress/icons';
-import {
-	Button,
-	Card,
-	Icon,
-	IconButton,
-	Link,
-	Stack,
-} from '@wordpress/ui';
+import { Button, Card, Icon, IconButton, Link, Stack } from '@wordpress/ui';
 import { WidgetRender } from '..';
 import { registerFieldType, resolveFields } from '../../../field-types';
 import { registerIconResolver, resolveIcon } from '../../../icon-resolver';
