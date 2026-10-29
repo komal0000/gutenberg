@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-D_kP3zpE.js";import{r as n,t as r}from"./useRenderElement-C6I9-ZyS.js";function useRender(e){return n(e.defaultTagName??"div",e,e)}function init_useRender(){return(init_useRender=e(()=>{r()}))()}export{useRender as n,init_useRender as t};

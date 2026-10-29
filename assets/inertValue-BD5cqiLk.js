@@ -1,0 +1,1 @@
+import{n as e}from"./rolldown-runtime-D_kP3zpE.js";import{m as n,p as t}from"./useRenderElement-C6I9-ZyS.js";function inertValue(e){return n(19)?e:e?"true":void 0}function init_inertValue(){return(init_inertValue=e(()=>{t()}))()}export{init_inertValue as n,inertValue as t};

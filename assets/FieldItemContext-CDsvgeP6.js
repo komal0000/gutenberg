@@ -1,0 +1,1 @@
+import{n as t,o as e}from"./rolldown-runtime-D_kP3zpE.js";import{t as n}from"./react-DWYdZJzm.js";function useFieldItemContext(){return i.useContext(o)}var i,o;function init_FieldItemContext(){return(init_FieldItemContext=t(()=>{i=e(n(),1),o=i.createContext({disabled:!1})}))()}export{init_FieldItemContext as n,useFieldItemContext as r,o as t};

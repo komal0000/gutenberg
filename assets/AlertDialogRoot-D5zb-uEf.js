@@ -1,0 +1,1 @@
+import{n as o}from"./rolldown-runtime-D_kP3zpE.js";import{l as t,u as i}from"./DialogTitle-DOzNtZXU.js";function AlertDialogRoot(o){return i("alert-dialog",o)}function init_AlertDialogRoot(){return(init_AlertDialogRoot=o(()=>{t()}))()}export{init_AlertDialogRoot as n,AlertDialogRoot as t};
